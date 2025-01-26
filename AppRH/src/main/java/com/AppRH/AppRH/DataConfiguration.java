@@ -1,38 +1,35 @@
 package com.AppRH.AppRH;
 
-
-import org.apache.coyote.Adapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+
 import javax.sql.DataSource;
 
 @Configuration
 public class DataConfiguration {
 
-
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdc:mysql://127.0.0.1:3306/AppRH?useTimezone=true&severTimeZone=UTC");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/AppRH?useSSL=false&serverTimezone=UTC");
         dataSource.setUsername("root");
-        dataSource.setPassword("admin");
-        return (DataSource) dataSource;
-
+        //dataSource.setPassword("password");
+        return dataSource;
     }
 
-    public JpaVendorAdapter jpaVendorAdapter(){
+    @Bean
+    public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setDatabase(Database.MYSQL);
         adapter.setShowSql(true);
         adapter.setGenerateDdl(true);
-        adapter.setDatabasePlatform("org.hibernate.dialect.MariaDBDialect");
+        adapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
         adapter.setPrepareConnection(true);
-
         return adapter;
     }
 }
