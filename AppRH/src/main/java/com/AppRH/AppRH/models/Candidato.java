@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotEmpty;
 public class Candidato {
 
 
+
     @Id
     @GeneratedValue
     private long id;
