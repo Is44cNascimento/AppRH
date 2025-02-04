@@ -24,7 +24,7 @@ import com.AppRH.AppRH.models.Vaga;
 public class VagaController {
 
     @Autowired
-    private com.AppRH.AppRH.repository.VagaRepository vr;
+    private VagaRepository vr;
 
     @Autowired
     private CandidatoRepository cr;
