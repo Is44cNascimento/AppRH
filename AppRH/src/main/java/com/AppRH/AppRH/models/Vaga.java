@@ -12,30 +12,34 @@ public class Vaga implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto incremento no BD
+    private Long codigo;
 
     @NotEmpty
+    @Column(nullable = false, length = 100)
     private String nome;
 
     @NotEmpty
+    @Column(nullable = false, length = 255)
     private String descricao;
 
     @NotEmpty
+    @Column(nullable = false, length = 10)
     private String data;
 
     @NotEmpty
+    @Column(nullable = false, length = 20)
     private String salario;
 
-    @OneToMany(mappedBy = "vaga", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "vaga", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Candidato> candidatos;
 
     // Getters e Setters
-    public long getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(long codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
