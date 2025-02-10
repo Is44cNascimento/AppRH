@@ -102,6 +102,7 @@ public class VagaController {
 
 
     //Adicionar Candidato
+    //@PostMapping
     @RequestMapping(value = "/{codigo}", method = RequestMethod.POST)
     public  String detalhesVagaPost(@PathVariable("codigo") long codigo, @Valid Candidato candidato,
                                     BindingResult result, RedirectAttributes attributes){
